@@ -27,6 +27,11 @@ public class Jumpscare : MonoBehaviour
 
     IEnumerator EnableJumpscare()
     {
+        Collider[] colliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None);
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
         gorillaPlayer.GetComponent<Rigidbody>().isKinematic = true;
         gorillaPlayer.GetComponent<Rigidbody>().useGravity = false;
         gorillaPlayer.transform.position = respawnPoint.transform.position;
@@ -41,6 +46,11 @@ public class Jumpscare : MonoBehaviour
 
     public void DisableJumpscare()
     {
+        Collider[] colliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None);
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = true;
+        }
         StopAllCoroutines();
         gorillaPlayer.GetComponent<Rigidbody>().isKinematic = false;
         gorillaPlayer.GetComponent<Rigidbody>().useGravity = true;
